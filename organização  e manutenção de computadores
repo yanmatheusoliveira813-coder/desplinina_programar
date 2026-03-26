@@ -1,0 +1,59 @@
+# Lista com 7 computadores
+computadores = {
+    1: {"status": "OK", "manutencao": "Nenhuma"},
+    2: {"status": "OK", "manutencao": "Nenhuma"},
+    3: {"status": "OK", "manutencao": "Nenhuma"},
+    4: {"status": "OK", "manutencao": "Nenhuma"},
+    5: {"status": "OK", "manutencao": "Nenhuma"},
+    6: {"status": "OK", "manutencao": "Nenhuma"},
+    7: {"status": "OK", "manutencao": "Nenhuma"},
+}
+
+while True:
+    print("\n=== CONTROLE DE LABORATÓRIO ===")
+    print("1 - Ver computadores")
+    print("2 - Registrar manutenção")
+    print("3 - Finalizar manutenção")
+    print("4 - Ver computadores em manutenção")
+    print("5 - Resetar todos")
+    print("6 - Sair")
+
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        for numero, dados in computadores.items():
+            print(f"Computador {numero} | Status: {dados['status']} | Manutenção: {dados['manutencao']}")
+
+    elif opcao == "2":
+        numero = int(input("Digite o número do computador: "))
+        if numero in computadores:
+            problema = input("Descreva o problema: ")
+            computadores[numero]["status"] = "EM MANUTENÇÃO"
+            computadores[numero]["manutencao"] = problema
+            print("Manutenção registrada!")
+        else:
+            print("Computador inválido!")
+
+    elif opcao == "3":
+        numero = int(input("Digite o número do computador: "))
+        if numero in computadores:
+            computadores[numero]["status"] = "OK"
+            computadores[numero]["manutencao"] = "Nenhuma"
+            print("Manutenção finalizada!")
+        else:
+            print("Computador inválido!")
+
+    elif opcao == "4":
+        for numero, dados in computadores.items():
+            if dados["status"] == "EM MANUTENÇÃO":
+                print(f"Computador {numero} com problema: {dados['manutencao']}")
+
+    elif opcao == "5":
+        for numero in computadores:
+            computadores[numero]["status"] = "OK"
+            computadores[numero]["manutencao"] = "Nenhuma"
+        print("Todos os computadores foram resetados!")
+
+    elif opcao == "6":
+        print("Encerrando o sistema...")
+        break
